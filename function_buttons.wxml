@@ -1,0 +1,50 @@
+<!-- 功能按键页面 -->
+<view class="container">
+  <view class="header">
+    <text class="title">功能按键</text>
+    <view class="header-buttons">
+      <button class="edit-btn {{editMode ? 'edit-mode' : ''}}" bindtap="toggleEditMode">{{editMode ? '保存按钮' : '编辑按钮'}}</button>
+      <button class="add-button" bindtap="addButton">添加按钮</button>
+      <button class="time-sync-btn" bindtap="syncTime">授时</button>
+    </view>
+  </view>
+
+  <!-- 按钮矩阵 -->
+  <view class="button-grid">
+    <block wx:for="{{buttons}}" wx:key="id">
+      <view class="button-item" wx:if="{{!editMode}}">
+        <button class="function-button" 
+                bindtouchstart="onButtonPress"
+                bindtouchstart="onButtonPress"
+                bindtouchend="onButtonRelease"
+                data-id="{{item.id}}"
+                hover-class="button-pressed">
+          {{item.name}}
+        </button>
+      </view>
+      <view class="button-editor" wx:else>
+        <view class="editor-card">
+          <input class="button-name-input" value="{{item.name}}" bindinput="onButtonNameChange" data-id="{{item.id}}" placeholder="按钮名称"/>
+          <view class="button-properties">
+            <view class="property-item">
+              <text class="property-label">按下发送数据:</text>
+              <input class="data-input" value="{{item.pressData}}" bindinput="onButtonPressDataChange" data-id="{{item.id}}" placeholder="输入按下指令"/>
+            </view>
+            <view class="property-item">
+              <text class="property-label">松开发送数据:</text>
+              <input class="data-input" value="{{item.releaseData}}" bindinput="onButtonReleaseDataChange" data-id="{{item.id}}" placeholder="输入松开指令"/>
+            </view>
+            <view class="property-item hex-toggle">
+              <checkbox-group bindchange="onHexFormatChange" data-id="{{item.id}}">
+                <label><checkbox value="hex" checked="{{item.isHex}}"/>16进制格式</label>
+              </checkbox-group>
+            </view>
+            <button class="delete-btn" bindtap="deleteButton" data-id="{{item.id}}">删除</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+
+</view>

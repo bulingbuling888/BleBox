@@ -1,0 +1,83 @@
+<!-- 全新页面设计 -->
+<view class="page_container">
+  <!-- 顶部区域 -->
+  <view class="header">
+    <view class="app_name">BLE实时分析系统</view>
+    <view class="status_info" wx:if="{{isBluetoothOn}}">蓝牙已开启</view>
+    <view class="status_info" wx:else>蓝牙已开启</view>
+  </view>
+
+  <!-- 主要功能区 -->
+  <view class="main_content">
+    <!-- 控制按钮区域 -->
+    <view class="control_panel">
+      <button loading="{{misScanding}}" class="scan_button" hover-class="scan_button_hover" bindtap="openBluetoothAdapter">{{scandbutName}}</button>
+      <button class="secondary_button" hover-class="secondary_button_hover" bindtap="stopBluetoothDevicesDiscovery" wx:if="{{isScanning}}">停止扫描</button>
+      <view class="button_group">
+        <button class="option_button" hover-class="option_button_hover" bindtap="gotosetuuid">匹配UUID</button>
+        <button class="option_button" hover-class="option_button_hover" bindtap="gotoabout">关于我们</button>
+      </view>
+    </view>
+
+    <!-- 设备列表区域 -->
+    <view class="devices_section">
+      <view class="section_title">发现 {{devices.length}} 个设备</view>
+      <scroll-view class="devices_list" scroll-y scroll-with-animation>
+        <view wx:if="{{devices.length === 0}}" class="empty_state">
+          <view class="empty_icon">🔍</view>
+          <view class="empty_text">暂无设备发现</view>
+          <view class="empty_subtext">请确保蓝牙设备已开启并处于可发现状态</view>
+        </view>
+        <view wx:for="{{devices}}" wx:key="index" class="device_card" data-device-id="{{item.deviceId}}" data-name="{{item.name || item.localName}}" bindtap="goto_Comm">
+          <view class="device_name">{{item.name || '未知设备'}}</view>
+          <view class="device_info">
+            <view class="rssi_info">
+              <text class="rssi_label">信号:</text>
+              <text class="rssi_value">{{item.RSSI}}dBm</text>
+            </view>
+            <view class="device_id">{{item.deviceId}}</view>
+          </view>
+          <view class="connect_button">连接</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 连接信息面板  -->
+  <view class="connection_panel" wx:if="{{connected}}" animation="{{panelAnimation}}">
+    <view class="panel_header">
+      <view class="connected_device_name">已连接到: {{name}}</view>
+      <button class="disconnect_button" bindtap="closeBLEConnection">断开连接</button>
+    </view>
+    <view class="panel_content">
+      <view class="section_title_small">设备特性</view>
+      <view wx:for="{{chs}}" wx:key="index" class="characteristic_item">
+        <view class="char_uuid">UUID: {{item.uuid}}</view>
+        <view class="char_value">值: {{item.value}}</view>
+        <button class="write_button" wx:if="{{canWrite}}" bindtap="writeBLECharacteristicValue" data-char-index="{{index}}">写入</button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 密码输入弹窗 -->
+  <view class="modal_mask" wx:if="{{showPasswordModal}}" bindtap="cancelPassword"></view>
+  <view class="password_modal" wx:if="{{showPasswordModal}}">
+    <view class="modal_content">
+      <view class="modal_title">管理员验证</view>
+      <view class="modal_subtitle">请输入管理员密码访问匹配UUID功能</view>
+      <input 
+        class="password_input" 
+        password 
+        placeholder="请输入4位数字密码" 
+        value="{{passwordInput}}" 
+        bindinput="onPasswordInput" 
+        focus="{{showPasswordModal}}"
+      />
+      <view class="error_message" wx:if="{{passwordError}}">密码错误，请重新输入</view>
+      <view class="modal_buttons">
+        <button class="cancel_button" bindtap="cancelPassword">取消</button>
+        <button class="confirm_button" bindtap="confirmPassword">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

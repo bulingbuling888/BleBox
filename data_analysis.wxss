@@ -1,0 +1,298 @@
+/* 页面基础样式 */
+.container {
+  padding: 12px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  /* 页面整体渐变背景 */
+  background: linear-gradient(to bottom,rgb(169, 223, 223) 0%,rgb(78, 180, 171) 50%,rgb(58, 158, 185) 100%);
+}
+
+/* 顶部导航栏样式 - 改为白色背景以突出内容 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 12px 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1a73e8; /* 与渐变背景色调呼应 */
+  letter-spacing: 0.5px;
+}
+
+.device-info {
+  font-size: 13px;
+  color: #5f6368;
+  margin-left: 8px;
+  flex: 1;
+  text-align: center;
+}
+
+.back-btn {
+  background: #1a73e8;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  min-width: 60px;
+  box-shadow: 0 1px 2px rgba(26, 115, 232, 0.4);
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.back-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 1px rgba(26, 115, 232, 0.3);
+}
+
+/* 控制按钮栏样式 - 改为白色背景 */
+.control-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 10px 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+}
+
+.control-btn {
+  background: #1a73e8;
+  color: white;
+  border-radius: 4px;
+  padding: 7px 14px;
+  font-size: 14px;
+  box-shadow: 0 1px 2px rgba(26, 115, 232, 0.4);
+  transition: all 0.2s ease;
+  border: none;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.control-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 1px rgba(26, 115, 232, 0.3);
+}
+
+.export-status {
+  font-size: 12px;
+  color: #5f6368;
+  white-space: nowrap;
+}
+
+/* 数据卡片网格样式 */
+.data-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+/* 数据卡片样式 - 白色背景确保内容清晰 */
+.data-card {
+  width: calc(50% - 6px);
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 卡片顶部彩色标识条和边框 */
+.data-card:nth-child(1) {
+  border: 2px solid #ea4335;
+}
+
+.data-card:nth-child(1)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #ea4335;
+}
+
+.data-card:nth-child(2) {
+  border: 2px solid #34a853;
+}
+
+.data-card:nth-child(2)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #34a853;
+}
+
+.data-card:nth-child(3) {
+  border: 2px solid #fbbc05;
+}
+
+.data-card:nth-child(3)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #fbbc05;
+}
+
+.data-card:nth-child(4) {
+  border: 2px solid #1a73e8;
+}
+
+.data-card:nth-child(4)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #1a73e8;
+}
+
+.data-type {
+  font-size: 15px;
+  font-weight: 600;
+  color: #202124;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0f0f0;
+  width: 100%;
+}
+
+.data-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #202124;
+  margin: 6px 0;
+  text-align: left;
+}
+
+/* 不同数据类型颜色 */
+.data-card:nth-child(1) .data-value {
+  color: #ea4335;
+}
+
+.data-card:nth-child(2) .data-value {
+  color: #34a853;
+}
+
+.data-card:nth-child(3) .data-value {
+  color: #fbbc05;
+}
+
+.data-card:nth-child(4) .data-value {
+  color: #1a73e8;
+}
+
+.data-timestamp {
+  font-size: 12px;
+  color: #5f6368;
+  margin-bottom: 8px;
+}
+
+.data-stats {
+  font-size: 13px;
+  color: #5f6368;
+  width: 100%;
+  text-align: left;
+  margin: 3px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.data-stats-label {
+  font-weight: 500;
+}
+
+/* 图表容器样式 - 白色背景确保图表清晰 */
+.chart-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.chart-title {
+  font-size: 17px;
+  font-weight: bold;
+  color: #202124;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.chart-item {
+  width: calc(50% - 6px);
+  height: 200px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.chart-subtitle {
+  font-size: 14px;
+  color: #5f6368;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 150px;
+}
+
+.chart-placeholder {
+  font-size: 13px;
+  color: #9aa0a6;
+  text-align: center;
+  padding-top: 60px;
+}
+
+/* 适配小屏幕设备 */
+@media (max-width: 375px) {
+  .data-card {
+    width: 100%;
+  }
+  
+  .chart-item {
+    width: 100%;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.data-value, .data-stats, .chart-subtitle {
+  animation: fadeIn 0.3s ease;
+}

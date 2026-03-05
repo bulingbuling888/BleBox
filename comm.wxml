@@ -1,0 +1,121 @@
+<!-- 主容器 -->
+<view class="comm-container">
+  <!-- 设备地址头部 -->
+  <view class="device-header">
+    <view class="device-address">{{deviceadd}}</view>
+    <view class="connection-status {{connectState === '已连接' ? 'connected' : 'disconnected'}}">{{connectState}}</view>
+  </view>
+
+  <!-- 功能控制区 -->
+  <view class="control-panel">
+    <!-- 顶部按钮组 -->
+    <view class="button-group top-buttons">
+      <button class="primary-btn" hover-class="primary-btn-hover" bindtap='goclear'>清屏</button>
+      <button class="primary-btn" hover-class="primary-btn-hover" bindtap='godisconnect'>{{reconnect}}</button>
+      <button class="secondary-btn" hover-class="secondary-btn-hover" bindtap='gotoback'>返回</button>
+    </view>
+
+    <!-- 设置选项区 -->
+    <view class="settings-row">
+      <view class="checkbox-item">
+        <checkbox-group bindchange='hexsend'>
+          <label class="checkbox-label">
+            <checkbox value="send" /> 
+            <text>HEX发送</text>
+          </label>
+        </checkbox-group>
+      </view>
+      <view class="checkbox-item">
+        <checkbox-group bindchange='hexrec'>
+          <label class="checkbox-label">
+            <checkbox value="rec" /> 
+            <text>HEX接收</text>
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据统计卡片区 -->
+  <view class="stats-grid">
+    <view class="stat-card" hover-class="stat-card-hover" bindtap='settime'>
+      <view class="stat-title">发送周期</view>
+      <view class="stat-value">{{autoSendInv}}ms</view>
+    </view>
+    <view class="stat-card" hover-class="stat-card-hover">
+      <view class="stat-title">接收速率</view>
+      <view class="stat-value">{{rxRate}}B/S</view>
+      <view class="stat-subvalue">总接收: {{rxCount}}</view>
+    </view>
+    <view class="stat-card" hover-class="stat-card-hover">
+      <view class="stat-title">发送速率</view>
+      <view class="stat-value">{{txRate}}B/S</view>
+      <view class="stat-subvalue">总发送: {{txCount}}</view>
+    </view>
+  </view>
+
+  <!-- 功能按钮区 -->
+  <view class="button-group function-buttons">
+    <button class="feature-btn {{dataAnalysisReady ? '' : 'disabled-btn'}}" hover-class="feature-btn-hover" bindtap='toggleDataAnalysis'>
+      数据分析
+      <text wx:if="{{!dataAnalysisReady}}" class="countdown">（{{dataAnalysisCountdown}}）</text>
+    </button>
+    <button class="feature-btn" hover-class="feature-btn-hover" bindtap='gotoFunctionButtons'>功能按键</button>
+  </view>
+
+  <!-- 原始数据显示区域 -->
+  <scroll-view class="data-display" style="height: {{scrollViewHeight}}px" scroll-y="true" scroll-into-view="{{scrollToView}}" scroll-with-animation="true">
+    <view class="data-content">{{recdata}}</view>
+    <view id="bottom-anchor"></view>
+    <view id="bottom-anchor-2"></view>
+  </scroll-view>
+
+  <!-- 发送控制栏 -->
+  <view class="send-controls">
+    <input class="send-input" bindinput="voteTitle" adjust-position="true" placeholder="写入数据" value="{{sendText}}"
+      bindfocus="onInputFocus" bindblur="onInputBlur" />
+    <view class="send-buttons">
+      <button class="action-btn" hover-class="action-btn-hover" bindtap='goautosend'>{{autosendText}}</button>
+      <button class="primary-btn" hover-class="primary-btn-hover" bindtap='gosend'>发送</button>
+    </view>
+  </view>
+</view>
+
+<!-- 自动发送周期弹窗 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog auto-send-modal {{keyboardVisible ? 'keyboard-visible' : ''}}" wx:if="{{showModal}}" catchtouchmove="preventTouchMove">
+  <view class="modal-header">
+    <view class="modal-title">自动发送周期设置</view>
+    <view class="modal-subtitle">单位：毫秒 (ms)</view>
+  </view>
+  
+  <view class="modal-content">
+    <view class="input-container">
+      <input 
+        class="input-field"
+        type="number" 
+        maxlength="5" 
+        bindinput="timeinputChange" 
+        placeholder="请输入时间"
+        value="{{autoSendInv}}"
+        focus="{{showModal}}"
+        adjust-position="false"
+        bindfocus="onInputFocus"
+        bindblur="onInputBlur"
+      />
+      <view class="input-suffix">ms</view>
+    </view>
+  </view>
+  
+  <view class="modal-footer">
+    <view class="btn btn-cancel" bindtap="onCancel">取消</view>
+    <view class="btn btn-confirm" bindtap="onConfirm">确定</view>
+  </view>
+</view>
+
+<!-- 提示弹窗 -->
+<view class="dialog_screen" wx:if="{{showModalStatus}}">
+  <view class="dialog_attr_box">
+    <view class="dialog_title">{{showTips}}</view>
+  </view>
+</view>

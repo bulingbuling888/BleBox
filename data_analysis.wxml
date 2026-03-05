@@ -1,0 +1,131 @@
+<!-- pages/data_analysis/data_analysis.wxml -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <text class="title">数据分析</text>
+    <text class="device-info">{{deviceInfo}}</text>
+    <button class="back-btn" bindtap="goBack">返回</button>
+  </view>
+
+  <!-- 导出和清空按钮 -->
+  <view class="control-bar">
+    <button class="control-btn" bindtap="exportHistoryData">导出数据</button>
+    <button class="control-btn" bindtap="clearHistoryData">清空数据</button>
+    <button class="control-btn" bindtap="toggleCharts">{{showCharts ? '隐藏图表' : '显示图表'}}</button>
+    <text class="export-status">{{exportStatus}}</text>
+  </view>
+
+  <!-- 数据卡片区域 -->
+  <view class="data-grid">
+    <!-- 温度数据卡片 -->
+    <view class="data-card">
+      <view class="data-type">温度(temp)</view>
+      <view class="data-value">
+        {{temp.value !== null ? (temp.value + temp.unit) : '暂无数据'}}
+      </view>
+      <view class="data-timestamp">{{temp.time ? '更新于 ' + temp.time : ''}}</view>
+      <view class="data-stats">
+        <text class="data-stats-label">最大值:</text>
+        <text>{{temp.max !== null ? temp.max + temp.unit : '-'}}</text>
+      </view>
+      <view class="data-stats">
+        <text class="data-stats-label">最小值:</text>
+        <text>{{temp.min !== null ? temp.min + temp.unit : '-'}}</text>
+      </view>
+      <view class="data-stats">
+        <text class="data-stats-label">平均值:</text>
+        <text>{{temp.avg !== null ? temp.avg + temp.unit : '-'}}</text>
+      </view>
+    </view>
+
+    <!-- 湿度数据卡片 -->
+    <view class="data-card">
+      <view class="data-type">湿度（humi）</view>
+      <view class="data-value">
+        {{humi.value !== null ? (humi.value + humi.unit) : '暂无数据'}}
+      </view>
+      <view class="data-timestamp">{{humi.time ? '更新于 ' + humi.time : ''}}</view>
+      <view class="data-stats">
+        <text class="data-stats-label">最大值:</text>
+        <text>{{humi.max !== null ? humi.max + humi.unit : '-'}}</text>
+      </view>
+      <view class="data-stats">
+        <text class="data-stats-label">最小值:</text>
+        <text>{{humi.min !== null ? humi.min + humi.unit : '-'}}</text>
+      </view>
+      <view class="data-stats">
+        <text class="data-stats-label">平均值:</text>
+        <text>{{humi.avg !== null ? humi.avg + humi.unit : '-'}}</text>
+      </view>
+    </view>
+
+    <!-- ADC数据卡片 -->
+    <view class="data-card">
+      <view class="data-type">ADC值（ADC）</view>
+      <view class="data-value">
+        {{adc.value !== null ? (adc.value + adc.unit) : '暂无数据'}}
+      </view>
+      <view class="data-timestamp">{{adc.time ? '更新于 ' + adc.time : ''}}</view>
+      <view class="data-stats">
+        <text class="data-stats-label">最大值:</text>
+        <text>{{adc.max !== null ? adc.max + adc.unit : '-'}}</text>
+      </view>
+      <view class="data-stats">
+        <text class="data-stats-label">最小值:</text>
+        <text>{{adc.min !== null ? adc.min + adc.unit : '-'}}</text>
+      </view>
+      <view class="data-stats">
+        <text class="data-stats-label">平均值:</text>
+        <text>{{adc.avg !== null ? adc.avg + adc.unit : '-'}}</text>
+      </view>
+    </view>
+
+    <!-- 电压数据卡片 -->
+    <view class="data-card">
+      <view class="data-type">电压（volt）</view>
+      <view class="data-value">
+        {{volt.value !== null ? (volt.value + volt.unit) : '暂无数据'}}
+      </view>
+      <view class="data-timestamp">{{volt.time ? '更新于 ' + volt.time : ''}}</view>
+      <view class="data-stats">
+        <text class="data-stats-label">最大值:</text>
+        <text>{{volt.max !== null ? volt.max + volt.unit : '-'}}</text>
+      </view>
+      <view class="data-stats">
+        <text class="data-stats-label">最小值:</text>
+        <text>{{volt.min !== null ? volt.min + volt.unit : '-'}}</text>
+      </view>
+      <view class="data-stats">
+        <text class="data-stats-label">平均值:</text>
+        <text>{{volt.avg !== null ? volt.avg + volt.unit : '-'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 图表区域 -->
+  <view class="chart-container" wx:if="{{showCharts}}">
+    <view class="chart-title">历史趋势图</view>
+    <view class="chart-grid">
+      <view class="chart-item">
+        <view class="chart-subtitle">温度趋势</view>
+        <canvas canvas-id="tempChart" class="chart-canvas"></canvas>
+        <view class="chart-placeholder" wx:if="{{temp.history.length === 0}}">暂无历史数据</view>
+      </view>
+      <view class="chart-item">
+        <view class="chart-subtitle">湿度趋势</view>
+        <canvas canvas-id="humiChart" class="chart-canvas"></canvas>
+        <view class="chart-placeholder" wx:if="{{humi.history.length === 0}}">暂无历史数据</view>
+      </view>
+      <view class="chart-item">
+        <view class="chart-subtitle">ADC趋势</view>
+        <canvas canvas-id="adcChart" class="chart-canvas"></canvas>
+        <view class="chart-placeholder" wx:if="{{adc.history.length === 0}}">暂无历史数据</view>
+      </view>
+      <view class="chart-item">
+        <view class="chart-subtitle">电压趋势</view>
+        <canvas canvas-id="voltChart" class="chart-canvas"></canvas>
+        <view class="chart-placeholder" wx:if="{{volt.history.length === 0}}">暂无历史数据</view>
+      </view>
+    </view>
+  </view>
+</view>

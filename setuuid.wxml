@@ -1,0 +1,41 @@
+<!--pages/setuuid/setuuid.wxml-->
+<view class="container">
+<radio-group class="radio-group" bindchange="radioChange">
+  <label class="radio" wx:for="{{items}}">
+    <radio value="{{item.name}}" checked="{{item.checked}}" />
+    <text>{{item.value}}</text>
+  </label>
+</radio-group>
+
+<view class="form-group">
+  <view class="weui-cells__title">ServiceUUID</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="inputView" maxlength="37" adjust-position="true" bindblur='inputend1' bindinput="bindReplaceInput" placeholder="uuid" value="{{serviceuuid}}" disabled="{{inputen}}" />
+    </view>
+  </view>
+</view>
+
+<view class="form-group">
+  <view class="weui-cells__title">Notify UUID</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="inputView" maxlength="37" adjust-position="true" bindblur='inputend2' bindinput="bindReplaceInput" placeholder="uuid" value="{{rxduuid}}" disabled="{{inputen}}" />
+    </view>
+  </view>
+</view>
+
+<view class="form-group">
+  <view class="weui-cells__title">Write UUID</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="inputView" maxlength="37" adjust-position="true" bindblur='inputend3' bindinput="bindReplaceInput" placeholder="uuid" value="{{txduuid}}" disabled="{{inputen}}" />
+    </view>
+  </view>
+</view>
+
+<text class="error-message">{{mtext}}</text>
+
+<button bindtap="backok" class="button_sp" hover-class="button_sp2">确认</button>
+</view>
+

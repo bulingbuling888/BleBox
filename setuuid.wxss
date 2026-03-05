@@ -1,0 +1,134 @@
+/* pages/setuuid/setuuid.wxss */
+/* UUID设置页面样式优化 */
+
+/* 页面背景 */
+page {
+  background: linear-gradient(135deg, #1e88e5 0%, #64b5f6 50%, #90caf9 100%);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 容器样式 */
+.container {
+  padding: 30rpx;
+}
+
+/* 单选框组样式 */
+.radio-group {
+  background-color: white;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 单选框样式 */
+.radio {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 10rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.radio:last-child {
+  border-bottom: none;
+}
+
+.radio radio {
+  transform: scale(1.2);
+  margin-right: 20rpx;
+  color: #3498db;
+}
+
+.radio text {
+  font-size: 30rpx;
+  color: #2c3e50;
+}
+
+/* 输入框样式 */
+.inputView {
+  border: 2rpx solid #ddd;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin: 10rpx 0;
+  font-size: 30rpx;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.inputView:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 4rpx rgba(52, 152, 219, 0.1);
+}
+
+/* 按钮样式 */
+.button_sp {
+  margin: 40rpx 30rpx 20rpx;
+  background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  font-size: 32rpx;
+  border-radius: 50rpx;
+  padding: 20rpx 0;
+  box-shadow: 0 6rpx 20rpx rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+}
+
+.button_sp2 {
+  margin: 40rpx 30rpx 20rpx;
+  background: linear-gradient(90deg, #7f8c8d 0%, #95a5a6 100%);
+  color: white;
+  font-size: 32rpx;
+  border-radius: 50rpx;
+  padding: 20rpx 0;
+  box-shadow: 0 6rpx 20rpx rgba(127, 140, 141, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* 标题样式 */
+.weui-cells__title {
+  font-size: 28rpx !important;
+  color: #2c3e50 !important;
+  margin-left: 20rpx !important;
+  margin-top: 30rpx !important;
+  font-weight: 600;
+}
+
+/* 提示文本样式 */
+text[style*="color:#F22"] {
+  font-size: 28rpx !important;
+  margin-left: 20rpx !important;
+  margin-top: 20rpx !important;
+  display: block;
+}
+
+/* 表单组样式 */
+.form-group {
+  margin-bottom: 30rpx;
+}
+
+/* 表单单元格样式 */
+.weui-cells {
+  background-color: white !important;
+  border-radius: 20rpx !important;
+  margin: 10rpx 0 30rpx !important;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05) !important;
+  padding: 10rpx 0 !important;
+}
+
+/* 错误消息样式 */
+.error-message {
+  font-size: 28rpx !important;
+  color: #e74c3c !important;
+  margin-left: 20rpx !important;
+  margin-top: 20rpx !important;
+  display: block;
+}
+
+.weui-cell {
+  padding: 10rpx 20rpx !important;
+}
+
+/* 适配小程序按钮 */
+button {
+  border-radius: 50rpx !important;
+}
