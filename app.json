@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/hello/hello",
+    "pages/comm/comm",
+    "pages/index/index",
+    "pages/setuuid/setuuid",
+    "pages/about/about",
+    "pages/out/out",
+    "pages/data_analysis/data_analysis",
+    "pages/function_buttons/function_buttons"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "智慧数据分析平台",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.bluetooth": {
+      "desc": "需要使用蓝牙功能连接您的设备"
+    },
+    "scope.userLocation": {
+      "desc": "需要您的位置信息以搜索蓝牙设备"
+    }
+  }
+}
