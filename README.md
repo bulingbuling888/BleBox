@@ -82,6 +82,6 @@
 4. 欢迎提出issue和pull request
 
 ## 联系方式
-如有任何问题或建议，请联系项目负责人苏灵凯。
+如有任何问题或建议，请联系项目负责人LINGKAI SU。
 电子邮箱：sulingkai2005@Outlook.com
 © 2025 智慧数据分析平台. All rights reserved.
